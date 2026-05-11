@@ -10,10 +10,8 @@ public class SignupPage {
     }
     By signupLoginBtn = By.linkText("Signup / Login");
     By nameField = By.name("name");
-    By emailField =
-            By.xpath("//input[@data-qa='signup-email']");
-    By signupButton =
-            By.cssSelector("button[data-qa='signup-button']");
+    By emailField = By.xpath("//input[@data-qa='signup-email']");
+    By signupButton = By.cssSelector("button[data-qa='signup-button']");
     public void clickSignupLogin() {
         driver.findElement(signupLoginBtn).click();
     }
