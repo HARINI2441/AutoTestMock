@@ -2,6 +2,7 @@ package com.krce.base;
 
 import com.krce.utils.ConfigReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,13 +23,27 @@ public class BaseTest {
             driver = new ChromeDriver();
 
             driver.manage().window().maximize();
-
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             driver.get(ConfigReader.getProperty("baseUrl"));
 
             wait = new WebDriverWait(driver,
                     Duration.ofSeconds(
                             Integer.parseInt(ConfigReader.getProperty("timeout"))));
+            removeAds();
+        } // Method to remove advertisements
+    public void removeAds() {
+
+        try {
+
+            ((JavascriptExecutor) driver)
+                    .executeScript(
+                            "document.querySelectorAll('iframe, .adsbygoogle, .grippy-host').forEach(el => el.remove());");
+
+        } catch (Exception e) {
+
+            System.out.println("No Ads Present");
         }
+    }
 
         @AfterMethod
         public void tearDown() {

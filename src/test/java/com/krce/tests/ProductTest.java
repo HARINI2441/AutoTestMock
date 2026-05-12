@@ -9,7 +9,7 @@ public class ProductTest extends BaseTest {
     @Test
     public void searchProductTest() {
 
-        ProductsPage product = new ProductsPage(driver);
+        ProductsPage product = new ProductsPage(driver,wait);
         product.clickProducts();
         product.searchProduct("Tshirt");
         product.clickSearchButton();

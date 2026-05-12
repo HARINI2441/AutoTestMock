@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class CartTest extends BaseTest {
     @Test
     public void verifyAddProductToCart() {
-        ProductsPage product = new ProductsPage(driver);
+        ProductsPage product = new ProductsPage(driver,wait);
         product.clickProducts();
         CartPage cart = new CartPage(driver);
         cart.addProductToCart();
